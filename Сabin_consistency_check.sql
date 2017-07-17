@@ -1,0 +1,49 @@
+use u183189;
+
+SELECT COUNT(*) FROM OPrices
+SELECT COUNT(*) FROM Cabins AS C, Offers AS O, OPrices AS OP WHERE OP.OfferID=O.OfferID AND O.ShipID=C.ShipID AND C.Code=OP.CabinCode
+
+GO -- COMPANY LAYER
+DECLARE @CompanyID int
+SET @CompanyID=10;
+
+SELECT COUNT(*) FROM OPrices WHERE OfferID IN (SELECT OfferID FROM Offers WHERE DATE > GETDATE() AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID))
+
+SELECT SUM(O.Num * C.NUm) FROM 
+(SELECT ShipID, Count(OfferID) AS Num FROM Offers WHERE DATE > GETDATE()AND  ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID)
+GROUP BY ShipID) AS O 
+INNER JOIN 
+(SELECT ShipID, Count(*) AS Num FROM Cabins WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID)
+GROUP BY ShipID
+) AS C
+ON C.ShipID = O.ShipID
+GO -- /COMPANY LAYER
+
+GO -- SHIP LAYER
+DECLARE @CompanyID int
+DECLARE @ShipID int
+SET @ShipID=17
+SET @CompanyID=2;
+
+SELECT  COUNT(*) FROM OPrices WHERE OfferID IN (SELECT OfferID FROM Offers WHERE DATE >GETDATE() AND ShipID = @ShipID)
+
+SELECT O.ShipID, (O.Num * C.NUm) FROM 
+(SELECT ShipID, Count(OfferID) AS Num FROM Offers WHERE DATE > GETDATE() AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID)
+GROUP BY ShipID) AS O 
+INNER JOIN 
+(SELECT ShipID, Count(*) AS Num FROM Cabins WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID)
+GROUP BY ShipID
+) AS C
+ON C.ShipID = O.ShipID
+GO -- /SHIP LAYER
+
+GO -- CABIN LAYER
+DECLARE @ShipID int
+SET @ShipID=17;
+
+SELECT COUNT(*) FROM Cabins WHERE ShipID=@ShipID
+
+SELECT OfferID, COUNT(*) AS Num FROM OPrices WHERE OfferID IN (SELECT OfferID FROM Offers WHERE ShipID=@ShipID AND Date>GETDATE())
+GROUP BY OfferID ORDER BY Num
+GO -- /CABIN LAYER
+
