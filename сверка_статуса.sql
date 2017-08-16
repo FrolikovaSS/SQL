@@ -11,7 +11,7 @@ Select BO.BorderID,
   FROM [dbo].[Profiles] AS P
   JOIN BOrders as BO ON BO.Phone = P.Phone
   Where BO.AgencyID is NULL and BO.AgencyID is NULL
-  and (BO.LName <> P.LName or BO.FName <> P.FName) and BO.StatusID = 100
+  and (BO.LName <> P.LName or BO.FName <> P.FName or BO.MName <> P.MName) and BO.StatusID = 100
  )
  Order by BO.BOrderID
 GO

@@ -19,6 +19,6 @@ SELECT
   Join BCruises AS BC ON BO.BOrderID = BC.BOrderID
  
   LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BO.Created > '2017-04-01' and (BC.Dining = 'X' or BC.Cabin LIKE 'X' or BC.BookingID is NULL)
+  Where BO.Created > '2017-04-01' and (BC.Dining = 'X' or BC.Cabin LIKE 'X' or BC.BookingID is NULL) and BO.StatusID = 100
   
   ORDER BY Manager

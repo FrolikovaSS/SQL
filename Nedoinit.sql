@@ -7,6 +7,7 @@
  --UPDATE [dbo].RoutePoints SET CityID=608 WHERE CityID=1412
 
 -- UPDATE Cities SET Latitude = 20.1306502 , Longitude = -72.9788419  Where CityID= 661
+--UPDATE Offers SET ShipID = 14 WHERE OfferID = 76341
 
 --EXEC dbo.MergeAll
 
