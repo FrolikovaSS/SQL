@@ -7,19 +7,19 @@ Select  BO.BOrderID,
 		BC.Category,
 		BC.Cabin,
 		BP.LName,
-		M.pax,
+--		M.pax,
 	
 		Netto = Case
-		When M.pax%2 = 1  Then CAST((CEILING((M.Price - M.ncf)/2*0.9)*2 + M.ncf)- 1 AS INT)
-		Else CAST((CEILING((M.Price - M.ncf)/2*0.9)*2 + M.ncf) AS INT) end,
+		When M.pax%2 = 1  Then CAST((CEILING((M.Price - M.ncf)/2*0.95)*2 + M.ncf)- 1 AS INT)
+		Else CAST((CEILING((M.Price - M.ncf)/2*0.95)*2 + M.ncf) AS INT) end,
 		
 		P.Paid,
 		Need_to_pay =
 		Case
 		 When StatusID = 50 and Paid > 0 Then (-Paid)
 		 WHEN StatusID = 50 and Paid = 0 Then ('0')
-		When M.pax%2 = 1 then (CAST((CEILING((M.Price - M.ncf)/2*0.9)*2 + M.ncf)-1 AS INT) - P.Paid)
-		 Else (CAST((CEILING((M.Price - M.ncf)/2*0.9)*2 + M.ncf) AS INT) - P.Paid)
+		When M.pax%2 = 1 then (CAST((CEILING((M.Price - M.ncf)/2*0.95)*2 + M.ncf)-1 AS INT) - P.Paid)
+		 Else (CAST((CEILING((M.Price - M.ncf)/2*0.95)*2 + M.ncf) AS INT) - P.Paid)
 		end,
 
 		Need_to_pay_RUB=
@@ -56,7 +56,7 @@ Select  BO.BOrderID,
   FROM [dbo].[BOrders] as BO
   Left Join BCruises BC ON BC.BOrderID = BO.BOrderID
  Join BCruisePersons BCP ON BCP.BCruiseID = BC.BCruiseID
-  Where CRMID = '8056' -- or CRMID ='10903' or CRMID = '9217' 
+  Where CRMID = '9871' -- or CRMID ='10903' or CRMID = '9217' 
  Group by BO.BOrderID) as M ON BO.BOrderID = M.BOrderID
  Where BP.Position = 1
  Order by StatusID, CRMID, BO.Created
