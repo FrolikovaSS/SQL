@@ -19,6 +19,6 @@ SELECT
   Join BCruises AS BC ON BO.BOrderID = BC.BOrderID
   Left Outer join BTasks AS BT ON BT.BOrderID = BO.BOrderID
   LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where (BO.StatusID >=60 and BO.StatusID <=100) and (BT.Status = 60) 
+  Where (BO.StatusID =50 or BO.StatusID =100) and (BT.Status = 60) 
   
-  ORDER BY Manager
+  ORDER BY Manager, Created

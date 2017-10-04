@@ -5,7 +5,7 @@ SELECT COUNT(*) FROM Cabins AS C, Offers AS O, OPrices AS OP WHERE OP.OfferID=O.
 
 GO -- COMPANY LAYER
 DECLARE @CompanyID int
-SET @CompanyID=10;
+SET @CompanyID=12;
 
 SELECT COUNT(*) FROM OPrices WHERE OfferID IN (SELECT OfferID FROM Offers WHERE DATE > GETDATE() AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID))
 
@@ -22,8 +22,8 @@ GO -- /COMPANY LAYER
 GO -- SHIP LAYER
 DECLARE @CompanyID int
 DECLARE @ShipID int
-SET @ShipID=17
-SET @CompanyID=2;
+SET @ShipID=338
+SET @CompanyID=49;
 
 SELECT  COUNT(*) FROM OPrices WHERE OfferID IN (SELECT OfferID FROM Offers WHERE DATE >GETDATE() AND ShipID = @ShipID)
 

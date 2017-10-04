@@ -11,7 +11,7 @@ GO
 
 ---//---
 
-SELECT AO.OfferID
+SELECT AO.OfferID, CompanyID
       
   FROM [dbo].[AOffers] AS AO
  

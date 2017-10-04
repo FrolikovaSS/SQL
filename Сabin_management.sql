@@ -1,6 +1,6 @@
 use u183189;
 
---SELECT * FROM Cabins WHERE ShipID=395 AND Code='I';
+--SELECT * FROM Cabins WHERE ShipID=177 AND Code='W';
 
 --INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (395, 1, '¬нутренн€€', 'IQ');
 --INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (395, 2, '¬нешн€€', 'CQ');
@@ -10,7 +10,7 @@ use u183189;
 DECLARE @Ship int, @Code nvarchar(50), @Date DateTime, @offer_id int, @count int; DECLARE @msg nvarchar(100);
 SET @Date=GETDATE(); SET @count=1;
 
-SET @Code='I'; SET @Ship=395;
+SET @Code='WS'; SET @Ship=182;
 
 DECLARE offer_cursor CURSOR FAST_FORWARD FOR 
 SELECT OfferID FROM Offers WHERE (ShipID = @Ship) AND (Date > @Date) AND (OfferID NOT IN 

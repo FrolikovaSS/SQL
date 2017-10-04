@@ -66,7 +66,7 @@ SELECT BC.BookingID, MQ.LName, pax, MQ.p as price, BC.Date, BC.Duration, BO.Crea
 		JOIN BCruises AS BC ON MQ.BCruiseID = BC.BCruiseID 
 		JOIN BOrders AS BO ON BO.BOrderID=BC.BOrderID 
 		JOIN Companies AS C ON BC.CompanyID=C.CompanyID
-	WHERE ((BO.AgencyID IS NULL) OR BO.AgencyID <> '150AEC84-7A0F-49B1-97E0-FF805E5A2201') AND Created >='2016-07-01'  AND BO.StatusID >= 100 AND BC.BookingID IS NOT NULL
+	WHERE ((BO.AgencyID IS NULL) OR BO.AgencyID <> '150AEC84-7A0F-49B1-97E0-FF805E5A2201') AND Created >='2017-07-01'  AND BO.StatusID >= 100 AND BC.BookingID IS NOT NULL AND BC.CompanyID = 2
 	ORDER BY   C.Name, Created ASC
 
 SELECT TOP 5 * FROM Companies
