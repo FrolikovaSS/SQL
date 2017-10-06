@@ -39,3 +39,15 @@ SELECT BO.BOrderID
   JOIN BCruises BC ON BO.BOrderID = BC.BOrderID
    LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
   Where BC.ShipID IN ( 12, 318) and (BC.Date = '2017-09-02' or BC.Date = '2017-08-26')
+
+
+  --- Авторизация пользователя
+
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('mikebax888#gmail.com@cruclub.ru')
+
+
+  ---Pullman
+
+--  UPDATE Offers SET IsManual = 0 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51))
+--  TODO SYNC UP
+--	UPDATE Offers SET IsManual = 1 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51)) AND OfferID NOT IN (78180)
