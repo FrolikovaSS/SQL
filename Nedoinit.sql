@@ -20,12 +20,21 @@ SELECT * From Cities Order by CityID DESC
 --UPDATE Offers SET RouteID=15841 WHERE OfferID IN (80481)
 --UPDATE Offers SET RouteID=20703 WHERE OfferID >=79015 and OfferID <=79039
 
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 393, 'ship', 'Обсуждение лайнера "Князь Владимир"', 0);
---UPDATE Ships SET TopicID=420 WHERE ShipID IN (393)
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 363, 'ship', 'Обсуждение лайнера MSC Meraviglia', 0);
+
+SELECT [TopicID]
+      ,[RefID]
+      ,[Type]
+      ,[Name]
+      ,[IsLocked]
+  FROM [dbo].[Topics]
+
+--UPDATE Ships SET TopicID=421 WHERE ShipID IN (363)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
 
---DELETE FROM NewOffers WHERE OfferID=80263
+-- Чтобы удалить оффер! Проверить связи:
+--DELETE FROM NewOffers WHERE OfferID=81138
 
 --- проверка заявок ----
 
@@ -42,10 +51,16 @@ SELECT BO.BOrderID
 
 
   --- Авторизация пользователя
+  SELECT Email, UserID From aspnet_Membership Where Email = 'avk2324#yandex.ru@cruclub.ru'
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('mikebax888#gmail.com@cruclub.ru')
-
-
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('baksheew#rambler.ru@cruclub.ru')
+  --
+  --md5
+  SELECT (HASHBYTES('MD5', Lower('A18F5D0B-DC7A-4A98-BED1-5A721649EA98')));-- UserID
+  Select (LOWER ('75AB261FA26C08A686CBD1B2D0EFC96D')) -- подставить результат предыдущей строки
+  --UPDATE Profiles SET PhotoPath = 'User/75ab261fa26c08a686cbd1b2d0efc96d.jpg' Where UserID = 'A18F5D0B-DC7A-4A98-BED1-5A721649EA98'
+  
+  
   ---Pullman
 
 --  UPDATE Offers SET IsManual = 0 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51))
