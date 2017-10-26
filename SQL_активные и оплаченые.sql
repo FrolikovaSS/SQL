@@ -5,10 +5,15 @@ SELECT BO.BOrderID
 
       ,CONCAT(PR.LName, ' ' ,PR.FName) AS Manager
     ,BO.Created
-      ,[StatusID]
+      ,[StatusID] as  Active
     
-      ,[CRMID]
-      
+      ,BT.Status as Waiting
+	  ,BT.Name
+	  ,BT.NDate
+	  ,DATEDIFF ( dd , GETDATE() , NDate ) as Days
+	
+	  ,Getdate() as Today
+
   FROM [dbo].[BOrders] as BO
   LEFT OUTER JOIN Profiles AS PR ON BO.ManagerID=PR.UserID 
    JOIN (SELECT 
@@ -28,9 +33,10 @@ SELECT BO.BOrderID
 
 				FROM BCruisePersons BCP 
 Group by BCruiseID) as B ON BC.BCruiseID = B.BCruiseID
+Left Outer join BTasks AS BT ON BT.BOrderID = BO.BOrderID
 
-  Where BO.StatusID = 100 and B.Summa = P.Paid
-  Order by Manager
+  Where BO.StatusID = 100 and B.Summa = P.Paid and BT.Status = 100 and BT.Name LIKE '%оплат%' and BT.Owner = 'C'
+  Order by BOrderID, Manager
 GO
 
 
