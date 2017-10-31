@@ -17,28 +17,20 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=21507 WHERE OfferID IN (68442)
+--UPDATE Offers SET RouteID=20923 WHERE OfferID IN (83310)
 --UPDATE Offers SET RouteID=20703 WHERE OfferID >=79015 and OfferID <=79039
 
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 363, 'ship', 'Обсуждение лайнера MSC Meraviglia', 0);
-
-SELECT [TopicID]
-      ,[RefID]
-      ,[Type]
-      ,[Name]
-      ,[IsLocked]
-  FROM [dbo].[Topics]
-
---UPDATE Ships SET TopicID=421 WHERE ShipID IN (363)
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 393, 'ship', 'Обсуждение лайнера "Князь Владимир"', 0);
+--UPDATE Ships SET TopicID=420 WHERE ShipID IN (393)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
 
--- Чтобы удалить оффер! Проверить связи:
---DELETE FROM NewOffers WHERE OfferID=76341
+--DELETE FROM NewOffers WHERE OfferID=80263
 
 --- проверка заявок ----
 
 SELECT BO.BOrderID
+		,BO.StatusID
       ,BC.Date
 	  ,BC.Duration
 	  ,BC.ShipID
@@ -47,23 +39,40 @@ SELECT BO.BOrderID
   FROM [dbo].[BOrders] BO
   JOIN BCruises BC ON BO.BOrderID = BC.BOrderID
    LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BC.ShipID IN ( 14) and (BC.Date = '2018-04-21') --or BC.Date = '2017-08-26')
+  Where BC.ShipID IN (309) and (BC.Date = '2017-11-04')-- or BC.Date = '2017-08-26')
 
 
   --- Авторизация пользователя
-  SELECT Email, UserID From aspnet_Membership Where Email = 'om7143954#yandex.ru@cruclub.ru'
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('om7143954#yandex.ru@cruclub.ru')
-  --
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('mikebax888#gmail.com@cruclub.ru')
 
-  --md5
-  SELECT (HASHBYTES('MD5', Lower('A18F5D0B-DC7A-4A98-BED1-5A721649EA98')));-- UserID
-  Select (LOWER ('75AB261FA26C08A686CBD1B2D0EFC96D')) -- подставить результат предыдущей строки
-  --UPDATE Profiles SET PhotoPath = 'User/75ab261fa26c08a686cbd1b2d0efc96d.jpg' Where UserID = 'A18F5D0B-DC7A-4A98-BED1-5A721649EA98'
-  
-  
+
   ---Pullman
 
 --  UPDATE Offers SET IsManual = 0 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51))
 --  TODO SYNC UP
 --	UPDATE Offers SET IsManual = 1 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51)) AND OfferID NOT IN (78180)
+
+
+---Поиск для отзыва
+
+SELECT 
+       U.UserId
+	   , U.UserName
+      ,[MobilePIN]
+      ,[Email]
+      ,[LoweredEmail]
+      ,[PasswordQuestion]  
+      ,[IsApproved]
+  
+  FROM [dbo].[aspnet_Membership] as ME
+  JOIN aspnet_Users as U ON U.UserId = ME.UserId
+  WHERE ME.Email LIKE '%boush%'
+
+
+  --- Проверка существования оффера
+  GO
+
+	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
+	 FROM [dbo].[Offers] WHERE Date = '2017-12-01' and ShipID = 369
+  GO

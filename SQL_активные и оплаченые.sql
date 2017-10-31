@@ -2,7 +2,7 @@ USE [u183189]
 GO
 
 SELECT BO.BOrderID
-
+		,BO.CRMID
       ,CONCAT(PR.LName, ' ' ,PR.FName) AS Manager
     ,BO.Created
       ,[StatusID] as  Active
@@ -45,7 +45,7 @@ GO
 GO
 SELECT * FROM (
 SELECT BO.BOrderID
-
+		,BO.CRMID
       ,CONCAT(PR.LName, ' ' ,PR.FName) AS Manager
       ,BO.Created
       ,[StatusID] as  Active   
