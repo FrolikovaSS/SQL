@@ -11,20 +11,29 @@
 
 --EXEC dbo.MergeAll
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (58, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
 
 SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=20923 WHERE OfferID IN (83310)
+--UPDATE Offers SET RouteID=21663 WHERE OfferID IN (72029)
 --UPDATE Offers SET RouteID=20703 WHERE OfferID >=79015 and OfferID <=79039
 
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 393, 'ship', 'Обсуждение лайнера "Князь Владимир"', 0);
+
+SELECT [TopicID]
+      ,[RefID]
+      ,[Type]
+      ,[Name]
+      ,[IsLocked]
+  FROM [dbo].[Topics]
+
 --UPDATE Ships SET TopicID=420 WHERE ShipID IN (393)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
 
+-- Чтобы удалить оффер! Проверить связи:
 --DELETE FROM NewOffers WHERE OfferID=80263
 
 --- проверка заявок ----
@@ -44,7 +53,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('mikebax888#gmail.com@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('n33806#yandex.ru@cruclub.ru')
 
 
   ---Pullman
@@ -53,6 +62,11 @@ SELECT BO.BOrderID
 --  TODO SYNC UP
 --	UPDATE Offers SET IsManual = 1 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51)) AND OfferID NOT IN (78180)
 
+ --md5
+  SELECT (HASHBYTES('MD5', Lower('A18F5D0B-DC7A-4A98-BED1-5A721649EA98')));-- UserID
+  Select (LOWER ('75AB261FA26C08A686CBD1B2D0EFC96D')) -- подставить результат предыдущей строки
+  --UPDATE Profiles SET PhotoPath = 'User/75ab261fa26c08a686cbd1b2d0efc96d.jpg' Where UserID = 'A18F5D0B-DC7A-4A98-BED1-5A721649EA98'
+  
 
 ---Поиск для отзыва
 
@@ -67,12 +81,12 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%boush%'
+  WHERE ME.Email LIKE '%KNL%'
 
 
   --- Проверка существования оффера
   GO
 
 	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
-	 FROM [dbo].[Offers] WHERE Date = '2017-12-01' and ShipID = 369
+	 FROM [dbo].[Offers] WHERE Date = '2018-04-13' and ShipID = 237
   GO

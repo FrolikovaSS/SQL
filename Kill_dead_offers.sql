@@ -10,8 +10,8 @@ SELECT * FROM Offers WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=2
 GO
 DECLARE @CompanyID int;
 DECLARE @SessionID int;
-SET @CompanyID = 1;
-SET @SessionID = 11529;
+SET @CompanyID = 2;
+SET @SessionID = 11692;
 UPDATE OPrices SET op=-1,sp=null,op1=null,sp1=null,op2=null,sp2=null,op3=null,sp3=null,op4=null,sp4=null,op5=null,sp5=null,op6=null,sp6=null WHERE OfferID IN (SELECT OfferID FROM Offers WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID) AND Date>GETDATE() AND IsManual=0 AND SessionID > 1 AND SessionID < @SessionID AND (PackageID IS NULL OR PackageID NOT LIKE 'C_%')) 
 UPDATE Offers SET SessionID=1 WHERE OfferID IN (SELECT OfferID FROM Offers WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID) AND Date>GETDATE() AND IsManual=0 AND SessionID > 1 AND SessionID < @SessionID AND (PackageID IS NULL OR PackageID NOT LIKE 'C_%')) 
 GO
@@ -22,8 +22,8 @@ SELECT TOP 19 SessionID, Name, Created FROM RSessions ORDER BY Created DESC
 GO
 DECLARE @CompanyID int;
 DECLARE @SessionID int;
-SET @CompanyID = 1;
-SET @SessionID = 11529;
+SET @CompanyID = 2;
+SET @SessionID = 11692;
 SELECT OfferID, ShipID, RouteID, Date, CruiseID, PackageID, SessionID FROM Offers WHERE ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID=@CompanyID) AND Date > GETDATE() AND IsManual = 0 AND SessionID > 1 AND (PackageID IS NULL OR PackageID NOT LIKE 'C_%') AND SessionID < @SessionID ORDER BY ShipID, Date
 GO
 

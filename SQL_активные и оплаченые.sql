@@ -4,21 +4,18 @@ GO
 SELECT BO.BOrderID
 		,BO.CRMID
       ,CONCAT(PR.LName, ' ' ,PR.FName) AS Manager
-    ,BO.Created
-      ,[StatusID] as  Active
-    
+      ,BO.Created
+      ,[StatusID] as  Active    
       ,BT.Status as Waiting
 	  ,BT.Name
 	  ,BT.NDate
-	  ,DATEDIFF ( dd , GETDATE() , NDate ) as Days
-	
+	  ,DATEDIFF ( dd , GETDATE() , NDate ) as Days	
 	  ,Getdate() as Today
 
   FROM [dbo].[BOrders] as BO
   LEFT OUTER JOIN Profiles AS PR ON BO.ManagerID=PR.UserID 
    JOIN (SELECT 
-      [BOrderID]
-    
+      [BOrderID]    
 	  ,SUM(BPI.Amount) as Paid
 	     
   FROM [dbo].[BPayments] as BP

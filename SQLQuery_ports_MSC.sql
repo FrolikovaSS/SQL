@@ -15,7 +15,7 @@ SELECT AO.OfferID, CompanyID
       
   FROM [dbo].[AOffers] AS AO
  
-  where IsManual = 1 and apf =0 --and CompanyID = 2
+  where IsManual = 1 and apf = 0 --and CompanyID = 1
  
 GO
 
