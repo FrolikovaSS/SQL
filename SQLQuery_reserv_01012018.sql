@@ -11,6 +11,7 @@ SELECT OfferID, BC.Date,
 	  , BC.BookingID
 	  ,BP.Position,
 	   BP.LName, BP.FName
+	   ,BO.Phone
 	  
 	 	
 	
@@ -22,7 +23,7 @@ SELECT OfferID, BC.Date,
  LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
  WHERE ( StatusID = 100 or StatusID = 60) and CRMID is not NULL and OfferID IN (61923, 81351) AND (BO.AgencyID<>'150aec84-7a0f-49b1-97e0-ff805e5a2201' OR BO.AgencyID IS NULL) 
  
-  ORDER BY OfferID, CRMID, BO.BOrderID,  Position
+  ORDER BY OfferID, Cabin, BO.BOrderID,  Position
  
 GO
 

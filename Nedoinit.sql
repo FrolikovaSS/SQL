@@ -8,17 +8,19 @@
 
 -- UPDATE Cities SET Latitude = 20.1306502 , Longitude = -72.9788419  Where CityID= 661
 --UPDATE Offers SET ShipID = 14 WHERE OfferID = 76341
-
+--UPDATE Routes Set CompanyID = 49 WHERE RouteID = 21912
 --EXEC dbo.MergeAll
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (58, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (13, '5*', 2, 'Celebrity Flora New Ship 2019', 'celebrity_flora', 2019);
+
+
 
 SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=21663 WHERE OfferID IN (72029)
---UPDATE Offers SET RouteID=20703 WHERE OfferID >=79015 and OfferID <=79039
+--UPDATE Offers SET RouteID=21954 WHERE OfferID IN (72029)
+--UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
 
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 393, 'ship', 'Обсуждение лайнера "Князь Владимир"', 0);
 
@@ -53,7 +55,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('n33806#yandex.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('krs9103#mail.ru@cruclub.ru')
 
 
   ---Pullman
@@ -81,12 +83,12 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%KNL%'
+  WHERE ME.Email LIKE '%dorofeev%'
 
 
   --- Проверка существования оффера
   GO
 
 	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
-	 FROM [dbo].[Offers] WHERE Date = '2018-04-13' and ShipID = 237
+	 FROM [dbo].[Offers] WHERE Date = '2018-06-17' and ShipID = 4
   GO
