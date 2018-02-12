@@ -4,7 +4,7 @@
  --SELECT * FROM OPrices  WHERE OfferID=80694 Order by OPriceID
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
- --UPDATE [dbo].RoutePoints SET CityID=337 WHERE CityID=1442
+ --UPDATE [dbo].RoutePoints SET CityID=717 WHERE CityID=1433
 
 -- UPDATE Cities SET Latitude = 20.1306502 , Longitude = -72.9788419  Where CityID= 1442
 --UPDATE Offers SET ShipID = 14 WHERE OfferID = 76341
@@ -19,7 +19,7 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=22431 WHERE OfferID IN (80401)
+--UPDATE Offers SET RouteID=22729 WHERE OfferID IN (73037,73038)
 --UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
 
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 167, 'ship', 'Обсуждение лайнера Celebrity Infinity', 0);
@@ -53,12 +53,12 @@ SELECT BO.BOrderID
   FROM [dbo].[BOrders] BO
   JOIN BCruises BC ON BO.BOrderID = BC.BOrderID
    LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BC.ShipID IN (14) and (BC.Date = '2018-03-06')-- or BC.Date = '2017-08-26')
+  Where BC.ShipID IN (7) and (BC.Date = '2019-04-05')-- or BC.Date = '2017-08-26')
 
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('alex_zel#mail.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('ele57670823#yandex.ru@cruclub.ru')
 
 
   ---Pullman
@@ -86,15 +86,16 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%alex_zelu%'
+  WHERE ME.Email LIKE '%ele576%'
 
 
   --- Проверка существования оффера
   GO
 
 	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
-	 FROM [dbo].[Offers] WHERE Date = '2018-06-19' and ShipID = 349
+	 FROM [dbo].[Offers] WHERE Date = '2019-04-05' and ShipID = 7
   GO
 
   -- Символы кириллицы с ударением в названии города
   -- SELECT Name, CityID FROM [dbo].[Cities] WHERE Name Like N'%[а́е́и́о́у́ы́э́ю́я́]%'
+  SELECT * FROM Cities WHERE DATALENGTH(Name) <> DATALENGTH(LTRIM(RTRIM(Name)))
