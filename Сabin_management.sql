@@ -1,16 +1,16 @@
 use u183189;
 
---SELECT * FROM Cabins WHERE ShipID= 186 AND Code='3H';
+--SELECT * FROM Cabins WHERE ShipID= 389 AND Code='WS';
 
---INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (398, 1, '¬нутренн€€', 'IF');
---INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (398, 2, '¬нешн€€', 'O6');
---INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (398, 3, '¬нешн€€ с балконом', 'DC');
---INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (398, 4, '—ьют', 'S2');
+--INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (188, 1, '¬нутренн€€', 'ZI');
+--INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (93, 2, '¬нешн€€', '6J');
+--INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (93, 3, '¬нешн€€ с балконом', '8A');
+--INSERT INTO [Cabins] ([ShipID], [CabinTypeID], [Name], [Code]) VALUES (387, 4, '—ьют', 'RB');
 
 DECLARE @Ship int, @Code nvarchar(50), @Date DateTime, @offer_id int, @count int; DECLARE @msg nvarchar(100);
 SET @Date=GETDATE(); SET @count=1;
 
-SET @Code='S2'; SET @Ship= 398;
+SET @Code='RB'; SET @Ship= 387;
 
 DECLARE offer_cursor CURSOR FAST_FORWARD FOR 
 SELECT OfferID FROM Offers WHERE (ShipID = @Ship) AND (Date > @Date) AND (OfferID NOT IN 

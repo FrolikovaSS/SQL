@@ -19,7 +19,7 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=22729 WHERE OfferID IN (73037,73038)
+--UPDATE Offers SET RouteID=22831 WHERE OfferID IN (72686)
 --UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
 
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 167, 'ship', 'Обсуждение лайнера Celebrity Infinity', 0);
@@ -38,7 +38,7 @@ SELECT [TopicID]
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
 
 -- Чтобы удалить оффер! Проверить связи:
---DELETE FROM NewOffers WHERE OfferID=80263
+--DELETE FROM NewOffers WHERE OfferID=88519
 
 --- проверка заявок ----
 
@@ -49,16 +49,18 @@ SELECT BO.BOrderID
 	  ,BC.ShipID
 	  ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
 	  ,BC.OfferID
+	  ,BO.Created
+	  ,BO.CRMID
     
   FROM [dbo].[BOrders] BO
   JOIN BCruises BC ON BO.BOrderID = BC.BOrderID
    LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BC.ShipID IN (7) and (BC.Date = '2019-04-05')-- or BC.Date = '2017-08-26')
-
+  Where BC.OfferID IN (79512, 79735, 79734)-- and (BC.Date = '2018-11-30')-- or BC.Date = '2017-08-26')
+  Order by Manager
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('ele57670823#yandex.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('ls2005902#yandex.ru@cruclub.ru')
 
 
   ---Pullman
@@ -86,14 +88,14 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%ele576%'
+  WHERE ME.Email LIKE '%ls2005902@yandex.ru%'
 
 
   --- Проверка существования оффера
   GO
 
 	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
-	 FROM [dbo].[Offers] WHERE Date = '2019-04-05' and ShipID = 7
+	 FROM [dbo].[Offers] WHERE Date = '2018-03-20' and ShipID = 14
   GO
 
   -- Символы кириллицы с ударением в названии города
