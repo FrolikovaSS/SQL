@@ -1,0 +1,36 @@
+USE [u183189]
+GO
+
+SELECT BO.BOrderID
+      ,[CRMID]
+      
+  FROM [dbo].[BOrders] as BO
+  JOIN BCruises BC ON BC.BOrderID = BO.BOrderID
+  Where BC.OfferID IN (83273,
+83353,
+83274,
+83354,
+83275,
+83355,
+83276,
+83356,
+83277,
+83357,
+83278,
+83358,
+83760,
+83359,
+83761,
+83360,
+83762,
+83361,
+83763,
+83362,
+83764,
+83363,
+83765,
+83364,
+83766) --and BO.StatusID = 100
+GO
+
+

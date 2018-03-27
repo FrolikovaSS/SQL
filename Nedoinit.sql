@@ -1,17 +1,17 @@
 ﻿-- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
 
- --DELETE FROM OPrices WHERE OfferID=80694  AND OPriceID >= 2057632
- --SELECT * FROM OPrices  WHERE OfferID=80694 Order by OPriceID
+ --DELETE FROM OPrices WHERE OfferID=89921  AND OPriceID >= 2332054
+ --SELECT * FROM OPrices  WHERE OfferID=89921 Order by OPriceID
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
- --UPDATE [dbo].RoutePoints SET CityID=717 WHERE CityID=1433
+ --UPDATE [dbo].RoutePoints SET CityID=1671 WHERE CityID=1144
 
 -- UPDATE Cities SET Latitude = 20.1306502 , Longitude = -72.9788419  Where CityID= 1442
 --UPDATE Offers SET ShipID = 14 WHERE OfferID = 76341
 --UPDATE Routes Set CompanyID = 49 WHERE RouteID = 21912
 --EXEC dbo.MergeAll
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (13, '5*', 2, 'Celebrity Flora New Ship 2019', 'celebrity_flora', 2019);
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (4, '5*', 2, 'Carnival Panorama New Ship 2019', 'carnival_panorama', 2019);
 
 
 
@@ -19,10 +19,10 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=22831 WHERE OfferID IN (72686)
+--UPDATE Offers SET RouteID=19178 WHERE OfferID IN (64435)
 --UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
 
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 167, 'ship', 'Обсуждение лайнера Celebrity Infinity', 0);
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 402, 'ship', 'Обсуждение лайнера Carnival Panorama', 0);
 
 SELECT [TopicID]
       ,[RefID]
@@ -33,9 +33,9 @@ SELECT [TopicID]
 
   -- DELETE FROM Topics Where TopicID = 423
 
---UPDATE Ships SET TopicID=204 WHERE ShipID IN (167)
+--UPDATE Ships SET TopicID=426 WHERE ShipID IN (402)
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (15, '5*', 2, 'MS Nieuw Statendam New Ship 2018', 'ms_nieuw_statendam', 2018);
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (2, '5*', 2, 'Costa Venezia New Ship 2019', 'costa_venezia', 2019);
 
 -- Чтобы удалить оффер! Проверить связи:
 --DELETE FROM NewOffers WHERE OfferID=88519
@@ -60,7 +60,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('ls2005902#yandex.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('alexandreev1992#mail.ru@cruclub.ru')
 
 
   ---Pullman
@@ -94,8 +94,9 @@ SELECT
   --- Проверка существования оффера
   GO
 
-	 SELECT       [OfferID]  ,[ShipID]   ,[Date]   
-	 FROM [dbo].[Offers] WHERE Date = '2018-03-20' and ShipID = 14
+	 SELECT       [OfferID]  ,[ShipID]   ,[Date]  , IsManual 
+	 FROM [dbo].[Offers] WHERE  ShipID = 216 and IsManual= 0  and Date = '2018-03-26'
+	 Order by Date
   GO
 
   -- Символы кириллицы с ударением в названии города
