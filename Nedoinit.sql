@@ -1,7 +1,7 @@
 ﻿-- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
 
- --DELETE FROM OPrices WHERE OfferID=89921  AND OPriceID >= 2332054
- --SELECT * FROM OPrices  WHERE OfferID=89921 Order by OPriceID
+ --DELETE FROM OPrices WHERE OfferID=90206 AND OPriceID >= 2338397
+ --SELECT * FROM OPrices  WHERE OfferID=90206 Order by OPriceID
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
  --UPDATE [dbo].RoutePoints SET CityID=1671 WHERE CityID=1144
@@ -9,6 +9,7 @@
 -- UPDATE Cities SET Latitude = 20.1306502 , Longitude = -72.9788419  Where CityID= 1442
 --UPDATE Offers SET ShipID = 14 WHERE OfferID = 76341
 --UPDATE Routes Set CompanyID = 49 WHERE RouteID = 21912
+--UPDATE Offers SET CruiseID = '' WHERE OfferID = 12345
 --EXEC dbo.MergeAll
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (4, '5*', 2, 'Carnival Panorama New Ship 2019', 'carnival_panorama', 2019);
@@ -19,7 +20,7 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID=19178 WHERE OfferID IN (64435)
+--UPDATE Offers SET RouteID=23061 WHERE OfferID IN (83378)
 --UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
 
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 402, 'ship', 'Обсуждение лайнера Carnival Panorama', 0);
