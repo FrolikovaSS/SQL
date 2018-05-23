@@ -8,7 +8,7 @@ SELECT    BO.BOrderID, BO.AgencyID, AGM.Com
 		 ,DSC.Discount as AddServices
 		 , P.Paid
 		 ,BC.OfferID
-			, CAST((B.Summa-B.NCF)*AGM.Com/100 AS INT) as NUM
+			, Summa - CAST(CEILING(B.Summa-B.NCF)*10/100 AS INT) +1 as NUM
   FROM [dbo].[BOrders] as BO
   LEFT JOIN Profiles AS PR ON BO.ManagerID=PR.UserID 
   LEFT JOIN ( SELECT DISTINCT AG.AgencyID, FIRST_VALUE(AGC.Commission ) OVER (PARTITION BY AG.AgencyID ORDER BY  AG.AgencyID ASC) as Com FROM  Agencies as AG 
