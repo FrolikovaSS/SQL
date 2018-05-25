@@ -4,11 +4,12 @@ GO
 SELECT Ag.NAME
 	,BO.CRMID
 	,CONCAT (PR.LName,' ',PR.FName) AS Manager
-	--,BC.Date
 	,BO.StatusID AS Active
-	,B.Summa
-	,(B.Summa - CAST(FLOOR((B.Summa - B.ncf)*BC.Commission/100)as INT) +( DSC.ComPart)) as Netto
-	,DSC.ComPart
+	,B.Summa As CruiseCost
+	,DSC.Services + B.Summa as FullCost
+	
+	,DSC.Services -DSC.ComPart +B.SummaCom as FullComPart
+	,(B.Summa - B.SummaCom +( DSC.ComPart)) as Netto
 	,P.Paid
 	--,CAST(P.RUB AS INT) AS Rub
 	,CAST((BP.EDate - 1) AS DATE) AS PaymentDate
@@ -29,17 +30,21 @@ JOIN (
 	) AS P ON BO.BOrderID = P.BOrderID
 LEFT JOIN BCruises BC ON BC.BOrderID = BO.BOrderID
 JOIN (
-	SELECT SUM(BCP.p) AS Summa
+	SELECT   SUM(CAST(FLOOR((BCP.p - BCP.ncf)*BC.Commission/100)as INT)) AS SummaCom
+			,SUM (BCP.p) as Summa
 			,SUM (BCP.ncf) AS ncf
-		,COUNT(BCP.p) AS pax
-		,BCruiseID
+			,COUNT(BCP.p) AS pax
+			
+		,BCP.BCruiseID
 	FROM BCruisePersons BCP
-	GROUP BY BCruiseID
+	
+	JOIN BCruises as BC ON BC.BCruiseID = BCP.BCruiseID
+	GROUP BY BCP.BCruiseID
 	) AS B ON BC.BCruiseID = B.BCruiseID
 
 JOIN (
 	SELECT [BOrderID]
-		--,SUM(BIP.p) AS Services
+		,SUM(BIP.p) AS Services
 		,SUM(BIP.ncf) AS ComPart
 	FROM [dbo].[BItems] AS BI
 	JOIN BItemPersons AS BIP ON BIP.BItemID = BI.BItemID
@@ -48,11 +53,11 @@ JOIN (
 JOIN BPayments AS BP ON BP.BOrderID = BO.BOrderID
 
 WHERE BO.StatusID >= 100
-	AND (B.Summa - CAST(FLOOR((B.Summa - B.ncf)*BC.Commission/100)as INT) + DSC.ComPart) = P.Paid
+	AND (B.Summa -B.SummaCom + DSC.ComPart) = P.Paid
 	AND BO.AgencyID IS NOT NULL 
 	AND BO.AgencyID NOT IN ('4d318ee4-d8a2-4806-860c-d21dd8733e56','aa1f5f88-95c6-44d1-ab0b-8d43f666e9b3')
 	AND BP.Pos = MaxPay
-	AND (BP.EDate > '2018-05-01' AND BP.EDate <= '2018-05-24') 
+	AND (BP.EDate > '2018-04-01' AND BP.EDate <= '2018-05-01') 
 	
 ORDER BY BP.EDate
 GO
