@@ -6,10 +6,10 @@ SELECT Ag.NAME
 	,CONCAT (PR.LName,' ',PR.FName) AS Manager
 	,BO.StatusID AS Active
 	,B.Summa As CruiseCost
-	,DSC.Services + B.Summa as FullCost
+	,COALESCE(DSC.Services, 0) + B.Summa as FullCost
 	
-	,DSC.Services -DSC.ComPart +B.SummaCom as FullComPart
-	,(B.Summa - B.SummaCom +( DSC.ComPart)) as Netto
+	,COALESCE(DSC.Services, 0) - COALESCE(DSC.ComPart, 0) +B.SummaCom as FullComPart
+	,(B.Summa - B.SummaCom + COALESCE(DSC.ComPart, 0)) as Netto
 	,P.Paid
 	--,CAST(P.RUB AS INT) AS Rub
 	, P.MaxPay
@@ -55,11 +55,11 @@ JOIN (
 --JOIN BPayments AS BP ON BP.BOrderID = BO.BOrderID
 
 WHERE BO.StatusID >= 100
-	AND (B.Summa -B.SummaCom + DSC.ComPart) = P.Paid
+	AND (B.Summa -B.SummaCom + COALESCE(DSC.ComPart, 0)) = P.Paid
 	AND BO.AgencyID IS NOT NULL 
 	AND BO.AgencyID NOT IN ('4d318ee4-d8a2-4806-860c-d21dd8733e56','aa1f5f88-95c6-44d1-ab0b-8d43f666e9b3')
 	--AND BP.Pos = MaxPay
-	AND (P.MaxPay >= '2018-05-01' AND P.MaxPay <= '2018-05-30') 
+	AND (P.MaxPay >= '2018-06-01' AND P.MaxPay <= '2018-07-01') 
 	
 ORDER BY P.MaxPay
 GO

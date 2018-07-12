@@ -1,6 +1,6 @@
 USE [u183189]
 GO
-SELECT OfferID, CompanyID from AOffers WHERE CompanyID = 1 and OfferID IN (
+SELECT OfferID, CompanyID from AOffers WHERE OfferID IN (
 SELECT AO.OfferID
       
   FROM [dbo].[AOffers] AS AO

@@ -1,7 +1,7 @@
 ﻿-- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
 
- --DELETE FROM OPrices WHERE OfferID= 91865 AND OPriceID >= 2386621
- --SELECT * FROM OPrices  WHERE OfferID= 89932 Order by OPriceID
+ --DELETE FROM OPrices WHERE OfferID= 93513 AND OPriceID >= 2422295
+ --SELECT * FROM OPrices  WHERE OfferID= 93513 Order by OPriceID
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
  --UPDATE [dbo].RoutePoints SET CityID= 1791 WHERE CityID= 913
@@ -12,18 +12,17 @@
 --UPDATE Offers SET CruiseID = '' WHERE OfferID = 12345
 --EXEC dbo.MergeAll
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (2, '5*', 2, 'Costa Smeralda New Ship 2019', 'costa_smeralda', 2019);
-
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (10, '5*', 2, 'Spectrum of the Seas New Ship 2019', 'spectrum_of_the_seas', 2019);
 
 
 SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID= 23651 WHERE OfferID IN (77385)
---UPDATE Offers SET RouteID=21955 WHERE OfferID >=63360 and OfferID <=63364
+--UPDATE Offers SET RouteID= 24302 WHERE OfferID IN (77098)
+--UPDATE Offers SET RouteID=23833 WHERE OfferID >=64561 and OfferID <=64569
 
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 404, 'ship', 'Обсуждение лайнера Costa Smeralda', 0);
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 405, 'ship', 'Обсуждение лайнера Spectrum of the Seas', 0);
 
 SELECT [TopicID]
       ,[RefID]
@@ -34,7 +33,7 @@ SELECT [TopicID]
 
   -- DELETE FROM Topics Where TopicID = 423
 
---UPDATE Ships SET TopicID=426 WHERE ShipID IN (402)
+--UPDATE Ships SET TopicID=428 WHERE ShipID IN (404)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (2, '5*', 2, 'Costa Venezia New Ship 2019', 'costa_venezia', 2019);
 
@@ -48,6 +47,7 @@ SELECT BO.BOrderID
       ,BC.Date
 	  ,BC.Duration
 	  ,BC.ShipID
+	  ,BO.ManagerID
 	  ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
 	  ,BC.OfferID
 	  ,BO.Created
@@ -56,12 +56,12 @@ SELECT BO.BOrderID
   FROM [dbo].[BOrders] BO
   JOIN BCruises BC ON BO.BOrderID = BC.BOrderID
    LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BC.OfferID IN (79512, 79735, 79734)-- and (BC.Date = '2018-11-30')-- or BC.Date = '2017-06-25')
+ -- Where BC.OfferID IN (79512, 79735, 79734)-- and (BC.Date = '2018-11-30')-- or BC.Date = '2017-06-25')
   Order by Manager
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('elena_lbd#mail.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('elenamashov#mail.ru@cruclub.ru')
 
 
   ---Pullman
@@ -75,7 +75,7 @@ SELECT BO.BOrderID
   Select (LOWER ('A6952DB778B14D782EC48243AA942CB9')) -- подставить результат предыдущей строки
   --UPDATE Profiles SET PhotoPath = 'User/a6952db778b14d782ec48243aa942cb9.jpg' Where UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
   -- в Profiles добавить цитату и КК
-  --UPDATE Profiles SET Position = 'MSC Crociere, Costa Cruises, Norwegian Cruise Line, Oceania Cruises' Where UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
+  --UPDATE Profiles SET Position = 'MSC Crociere, Costa Cruises, Norwegian Cruise Line, Oceania Cruises' Where UserID = 'DEAB7B82-18EF-4788-844F-BA26646BDDDE'
 
 ---Поиск для отзыва
 
@@ -90,7 +90,7 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%blokh%'
+  WHERE ME.Email LIKE '%tatianadreamtour@gmail.com%'
   --Where ME.UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
   --UPDATE aspnet_Membership SET Email = 'a.teplova@cruclub.ru' Where UserID = '145623A5-C376-4611-8C0E-EE61572B63A4'
 
@@ -98,7 +98,7 @@ SELECT
   GO
 
 	 SELECT       [OfferID]  ,[ShipID]   ,[Date]  , IsManual 
-	 FROM [dbo].[Offers] WHERE  ShipID = 318 and IsManual= 0  and Date = '2018-11-18'
+	 FROM [dbo].[Offers] WHERE  ShipID = 237 and IsManual= 0  and Date = '2019-03-18'
 	 Order by Date
   GO
 

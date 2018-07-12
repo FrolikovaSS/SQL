@@ -6,5 +6,5 @@ BC.CompanyID, pax, MQ.p as price,  BO.StatusID
 		JOIN BCruises AS BC ON MQ.BCruiseID = BC.BCruiseID 
 		JOIN BOrders AS BO ON BO.BOrderID=BC.BOrderID 	
 		LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-	WHERE ( StatusID = 100 or StatusID = 200) and CRMID is not NULL AND (BO.AgencyID='D514D4D4-4CF0-40F6-BC73-770E04D57586') 
+	WHERE ( StatusID = 100 or StatusID = 200) and CRMID is not NULL AND (BO.AgencyID='99044bce-a1cf-4774-b7cb-b8a4717dfa85') 
 	ORDER BY Created, CompanyID, OfferID, CRMID, BO.BOrderID

@@ -5,19 +5,22 @@ SELECT A.AgentID
       --,[ManagerID]
 	   ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
       ,A.Name
-      ,[StatusID]
+  --    ,[StatusID]
 --		,A.Phone
-  --    ,[Email]
+     ,AG.Email
   --    ,[Site]
-      ,[AWPath]
+  --    ,[AWPath]
       ,[CRMID]
   --    ,[ID]
       ,[EDate]
      
   FROM [dbo].[Agents] as A
   LEFT OUTER JOIN Profiles AS P ON A.ManagerID=P.UserID 
-  Where AWPath is not NULL and StatusID <=60
-  Order by Manager
+  Left JOIN Agencies AS AG ON AG.AgentID = A.AgentID
+  Where AWPath is not NULL and StatusID = 60
+
+
+  Order by CRMID
 GO
 
 
