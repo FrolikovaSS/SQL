@@ -3,14 +3,14 @@ SELECT
 	 BO.BOrderID
 	 , BO.CRMID
     , BT.BTaskID
-	,Date
+--	,Date
 	,BO.Created
       ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
      ,BT.Status
       ,[StatusID]
      
-      ,BO.FName
-      ,BO.LName 
+ --     ,BO.FName
+   --   ,BO.LName 
      
   FROM [dbo].[BOrders] AS BO
   Join BCruises AS BC ON BO.BOrderID = BC.BOrderID

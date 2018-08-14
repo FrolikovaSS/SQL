@@ -12,17 +12,17 @@
 --UPDATE Offers SET CruiseID = '' WHERE OfferID = 12345
 --EXEC dbo.MergeAll
 
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (10, '5*', 2, 'Spectrum of the Seas New Ship 2019', 'spectrum_of_the_seas', 2019);
-
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (4, '4*', 1, 'Carnival Sunrise', 'сarnival_sunrise', 1999);
+-- SELECT * FROM Ships
 
 SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID= 24302 WHERE OfferID IN (77098)
---UPDATE Offers SET RouteID=23833 WHERE OfferID >=64561 and OfferID <=64569
+--UPDATE Offers SET RouteID= 24523 WHERE OfferID IN (93318, 93319, 93320)
+--UPDATE Offers SET RouteID = 24399 WHERE OfferID >=88830 and OfferID <=88856
 
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 405, 'ship', 'Обсуждение лайнера Spectrum of the Seas', 0);
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 407, 'ship', 'Обсуждение лайнера  Carnival Sunrise', 0);
 
 SELECT [TopicID]
       ,[RefID]
@@ -33,7 +33,7 @@ SELECT [TopicID]
 
   -- DELETE FROM Topics Where TopicID = 423
 
---UPDATE Ships SET TopicID=428 WHERE ShipID IN (404)
+--UPDATE Ships SET TopicID=429 WHERE ShipID IN (405)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (2, '5*', 2, 'Costa Venezia New Ship 2019', 'costa_venezia', 2019);
 
@@ -97,9 +97,11 @@ SELECT
   --- Проверка существования оффера
   GO
 
-	 SELECT       [OfferID]  ,[ShipID]   ,[Date]  , IsManual 
-	 FROM [dbo].[Offers] WHERE  ShipID = 237 and IsManual= 0  and Date = '2019-03-18'
-	 Order by Date
+	 SELECT       OFR.OfferID  ,OFR.ShipID   ,OFR.Date  , BC.Duration,IsManual 
+	 FROM [dbo].[Offers] AS OFR
+	 LEFT JOIN BCruises as BC ON   OFR.OfferID = BC.OfferID
+	  WHERE  OFR.ShipID = 237 and IsManual= 0  and OFR.Date = '2018-10-08'
+	 Order by OFR.Date
   GO
 
   -- Символы кириллицы с ударением в названии города

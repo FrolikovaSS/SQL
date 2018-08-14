@@ -6,21 +6,24 @@ SELECT
 	 BO.BOrderID
 	 , BO.CRMID
   --  , BT.BTaskID
-	,Date
+	--,Date
 	,BO.Created
       ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
-     ,BT.Status
+   --  ,BT.Status
       ,[StatusID]
      ,COUNT(BT.BTaskID) OVER (PARTITION BY BO.BOrderID) AS task
-      ,BO.FName
-      ,BO.LName 
-     
+ --     ,BO.FName
+  --    ,BO.LName 
+     ,BT.Author
+	 ,BT.Owner
+	 ,BT.Name
+	 ,BT.Severity
   FROM [dbo].[BOrders] AS BO
   Join BCruises AS BC ON BO.BOrderID = BC.BOrderID
   Left Outer join BTasks AS BT ON BT.BOrderID = BO.BOrderID
   LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
   Where (BO.StatusID =50 or BO.StatusID =100) and (BT.Status = 60) 
-  
+   and BT.Owner = 'M'
   ORDER BY Manager, BOrderID
 
   -----//---Без таска о полной оплате

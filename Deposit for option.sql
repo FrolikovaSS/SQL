@@ -31,14 +31,15 @@ SELECT BO.BOrderID
       ,BC.CompanyID
       , BC.Date
       ,[CRMID]
+	    ,BC.Category
      ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
       ,BO.Created
-     
+   
   FROM [dbo].[BOrders] as BO
   LEFT JOIN BItems AS BI ON BO.BOrderID = BI.BOrderID
   LEFT Join BCruises AS BC ON BC.BOrderID = BO.BOrderID
    Left JOIN Profiles AS P ON BO.ManagerID=P.UserID 
-  Where BO.StatusID = 100 and BC.CompanyID = 49 and BI.BItemID is NULL-- and BC.Date >= '2018-04-01' and (BC.Category <> 'IV'and BC.Category <> 'EV' and BC.Category <> 'BV')
+  Where BO.StatusID = 100 and BC.CompanyID = 9 and BI.BItemID is NULL-- and BC.Date >= '2018-04-01' and (BC.Category <> 'IV'and BC.Category <> 'EV' and BC.Category <> 'BV')
   Order by Manager
 
 Go --/Additional services
