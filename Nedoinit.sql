@@ -1,7 +1,9 @@
-﻿-- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
+﻿-- Проиничены ли офферы? --
+-- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
 
- --DELETE FROM OPrices WHERE OfferID= 93513 AND OPriceID >= 2422295
- --SELECT * FROM OPrices  WHERE OfferID= 93513 Order by OPriceID
+ --Если матрица проиничена несколько раз--
+ --SELECT * FROM OPrices  WHERE OfferID= 95392 Order by OPriceID
+ --DELETE FROM OPrices WHERE OfferID= 95392 AND OPriceID >= 2476048
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
  --UPDATE [dbo].RoutePoints SET CityID= 1791 WHERE CityID= 913
@@ -12,6 +14,7 @@
 --UPDATE Offers SET CruiseID = '' WHERE OfferID = 12345
 --EXEC dbo.MergeAll
 
+--Добавление корабля--
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (4, '4*', 1, 'Carnival Sunrise', 'сarnival_sunrise', 1999);
 -- SELECT * FROM Ships
 
@@ -19,9 +22,11 @@ SELECT * From Cities WHERE UName LIKE '% %'
 SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
---UPDATE Offers SET RouteID= 24523 WHERE OfferID IN (93318, 93319, 93320)
+--Перенос офферов--
+--UPDATE Offers SET RouteID= 24680 WHERE OfferID IN (81932)
 --UPDATE Offers SET RouteID = 24399 WHERE OfferID >=88830 and OfferID <=88856
 
+--Открыть добавление отзывов у корабля--
 --INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 407, 'ship', 'Обсуждение лайнера  Carnival Sunrise', 0);
 
 SELECT [TopicID]
@@ -61,7 +66,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('elenamashov#mail.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('lmosina1949#mail.ru@cruclub.ru')
 
 
   ---Pullman
@@ -100,7 +105,7 @@ SELECT
 	 SELECT       OFR.OfferID  ,OFR.ShipID   ,OFR.Date  , BC.Duration,IsManual 
 	 FROM [dbo].[Offers] AS OFR
 	 LEFT JOIN BCruises as BC ON   OFR.OfferID = BC.OfferID
-	  WHERE  OFR.ShipID = 237 and IsManual= 0  and OFR.Date = '2018-10-08'
+	  WHERE  OFR.ShipID = 277 and IsManual= 0  and OFR.Date = '2018-09-22'
 	 Order by OFR.Date
   GO
 
