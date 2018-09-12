@@ -23,7 +23,7 @@ SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
 --Перенос офферов--
---UPDATE Offers SET RouteID= 24680 WHERE OfferID IN (81932)
+--UPDATE Offers SET RouteID = 24765 WHERE OfferID IN (73016)
 --UPDATE Offers SET RouteID = 24399 WHERE OfferID >=88830 and OfferID <=88856
 
 --Открыть добавление отзывов у корабля--
@@ -66,7 +66,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('lmosina1949#mail.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('eshesternina#mail.ru@cruclub.ru')
 
 
   ---Pullman
@@ -95,7 +95,7 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%tatianadreamtour@gmail.com%'
+  WHERE ME.Email LIKE '%domustv@gmail.com'
   --Where ME.UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
   --UPDATE aspnet_Membership SET Email = 'a.teplova@cruclub.ru' Where UserID = '145623A5-C376-4611-8C0E-EE61572B63A4'
 
@@ -105,7 +105,7 @@ SELECT
 	 SELECT       OFR.OfferID  ,OFR.ShipID   ,OFR.Date  , BC.Duration,IsManual 
 	 FROM [dbo].[Offers] AS OFR
 	 LEFT JOIN BCruises as BC ON   OFR.OfferID = BC.OfferID
-	  WHERE  OFR.ShipID = 277 and IsManual= 0  and OFR.Date = '2018-09-22'
+	  WHERE  OFR.ShipID = 363 and IsManual= 0  and OFR.Date = '2018-09-20'
 	 Order by OFR.Date
   GO
 

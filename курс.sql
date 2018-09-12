@@ -5,7 +5,7 @@ SELECT BO.BOrderID
 		--,BO.AgencyID
       ,BO.CRMID  
 	 -- ,LEN(BO.CRMID)  
-      ,BP.EDate
+      --,BP.EDate
 	  ,BP.Status
 	  ,BPI.Amount
 	  ,BPI.Currency
