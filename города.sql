@@ -11,6 +11,8 @@ INSERT #cities2
 SELECT CI.Name, CO.Name as Country FROM Cities as CI 
 Left JOIN Countries as CO On CO.ISO2 = CI.CountryID WHERE Description IS NULL
 --SELECT * FROM #cities2
+Order by Country
+
 
 Create table #cities3
 (Num int
@@ -28,4 +30,4 @@ Begin
 
 End
 
-DROP TABLE #cities2
+DROP TABLE #cities3

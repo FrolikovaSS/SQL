@@ -11,7 +11,9 @@ SELECT
 	,P.Paid
 	,BT.Name
 	,BT.NDate
-	 ,DATEDIFF ( dd , GETDATE() , NDate ) as Days	
+	,DATEDIFF ( dd , GETDATE() , NDate ) as DaysNot	
+	,BT.EDate
+	 ,DATEDIFF ( dd , GETDATE() , EDate ) as Days	
 FROM [dbo].[BOrders] AS BO
 LEFT OUTER JOIN Profiles AS PR ON BO.ManagerID = PR.UserID
 JOIN (
@@ -52,5 +54,6 @@ WHERE BO.StatusID = 100
 	AND (B.Summa + COALESCE(DSC.Services, 0)) = P.Paid
 
 	AND BT.Status = 100 and BT.Name LIKE '%оплат%' and BT.Owner = 'C'
+	
 	ORDER BY CRMID
 GO

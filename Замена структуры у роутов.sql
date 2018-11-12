@@ -2,8 +2,8 @@ USE [u183189]
 GO
 
 
- UPDATE [dbo].[Routes] Set Structure = '<p>&nbsp;<strong>В стоимость включено:</strong></p>
-<ul>
+ --UPDATE [dbo].[Routes] Set Structure = '<p>&nbsp;<strong>В стоимость включено:</strong></p>
+/*<ul>
     <li>проживание в каюте выбранной категории;</li>
     <li>портовый сбор взр./реб.(до 18 лет);</li>
     <li>питание &ndash; полный пансион (завтрак, обед, полуденный чай, ужин, буфет для полуночников);</li>
@@ -22,7 +22,34 @@ GO
     <li>сервисный сбор (чаевые), оплачивается на борту по окончании круиза.</li>
 </ul>'
  --SELECT RouteID FROM Routes
-  Where CompanyID = 1 and RouteID NOT IN( SELECT distinct RouteID FROM [dbo].[RoutePoints] Where StyleID = 2)
-GO
+ -- Where CompanyID = 1 and RouteID NOT IN( SELECT distinct RouteID FROM [dbo].[RoutePoints] Where StyleID = 2)
+--GO
 
+
+*/
+Select RouteID, Structure FROM dbo.Routes 
+Where CompanyID = 9 and RouteID IN( SELECT distinct RouteID FROM [dbo].[RoutePoints] Where StyleID = 2)
+
+
+/* UPDATE [dbo].[Routes] Set Structure = '<p><strong>В стоимость входит:</strong></p>
+<ul>
+    <li>Проживание в каюте выбранной категории;</li>
+    <li>5-ти разовое питание на борту;</li>
+	<li>Пакет алкогольных и безалкогольных напитков (кроме кают IX, OX, BX, MX);</li>
+    <li>Развлекательные программы на борту лайнера;</li>
+    <li>Пользование палубным инвентарем (бассейны, джакузи, сауна и т.д.);</li>
+    <li>Портовые сборы/таксы;</li>
+    <li>Сервисный сбор (чаевые).</li>
+</ul>
+<p><b>Дополнительно оплачивается:</b></p>
+<ul>
+    <li>Авиаперелет;</li>
+    <li>Оформление визы;</li>
+    <li>Трансферы (по желанию);</li>
+    <li>Отель до/после круиза (по желанию);</li>
+    <li>Страховка от невыезда (по желанию);</li>
+    <li>Медицинский страховой полис.</li>
+</ul>'
+Where CompanyID = 9 
+--and RouteID NOT IN( SELECT distinct RouteID FROM [dbo].[RoutePoints] Where StyleID = 2)
 

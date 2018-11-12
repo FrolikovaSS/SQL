@@ -3,9 +3,7 @@ GO
 
 SELECT [OfferID]
       ,[CruiseID]
-  
-      ,[CompanyID]
-     
+      ,[CompanyID]    
       ,[Trace]
      
   FROM [dbo].[AOffers] Where (CompanyID NOT IN (1,2)) and (Trace LIKE 'Рим%' or Trace LIKE '%Барселона%') and OfferID NOT IN (

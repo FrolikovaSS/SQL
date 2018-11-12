@@ -24,7 +24,7 @@ SELECT
   LEFT OUTER JOIN Profiles AS P ON BO.ManagerID=P.UserID 
   Where (BO.StatusID =50 or BO.StatusID =100) and (BT.Status = 60) 
    and BT.Owner = 'M'
-  ORDER BY Manager, BOrderID
+  ORDER BY Manager, BOrderID, StatusID
 
   -----//---Без таска о полной оплате
 

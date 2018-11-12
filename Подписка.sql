@@ -2,13 +2,12 @@ USE [u183189]
 GO
 
 
-  Select FName, LName, Email From BOrders
+  Select distinct Email, MAX(Phone) as Phone From BOrders
   
 
- Where Created > '2017-07-25' and AgencyID is Null and Email not IN (
- Select  Email From BOrders
- Where Created < '2017-07-25' and AgencyID is Null)
-  Order by Email
+ Where AgencyID is not Null
+ Group by Email
+ Order by Email
 GO
 
 

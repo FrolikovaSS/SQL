@@ -8,8 +8,8 @@ SELECT BO.BOrderID
       ,[StatusID] as  Active    
       ,BT.Status as Waiting
 	  ,BT.Name
-	  ,BT.NDate
-	  ,DATEDIFF ( dd , GETDATE() , NDate ) as Days	
+	  ,BT.EDate
+	  ,DATEDIFF ( dd , GETDATE() , EDate ) as Days	
 	  ,Getdate() as Today
 
   FROM [dbo].[BOrders] as BO
@@ -49,6 +49,7 @@ SELECT BO.BOrderID
       ,BT.Status as Waiting
 	  ,BT.Name
 	  ,BT.NDate
+	  ,BT.EDate
 	  ,DATEDIFF ( dd , GETDATE() , NDate ) as Days	
 	  ,Getdate() as Today
 
@@ -57,6 +58,6 @@ SELECT BO.BOrderID
    Left Join BCruises BC ON BC.BOrderID = BO.BOrderID
    Left Outer join BTasks AS BT ON BT.BOrderID = BO.BOrderID
 
-  Where BO.StatusID = 100 and BT.Status = 100 and BT.Name LIKE '%оплат%' and BT.Owner = 'C') as M Where M.Days <5 or M.Days is NULL
+  Where BO.StatusID = 100 and BT.Status = 100 and BT.Name LIKE '%оплат%' and BT.Owner = 'C') as M Where M.Days <6 or M.Days is NULL
   Order by Days
 GO

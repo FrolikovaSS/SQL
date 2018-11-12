@@ -3,7 +3,7 @@ GO
 SELECT BC.OfferID,
     
     CONCAT(P.LName, ' ' ,P.FName) AS Manager,
-	   CAST(BO.CRMID AS int) as CRMID,  
+	   BO.CRMID,  
 	   BP.LName, BP.FName
 	  ,BP.Nationality 	
 	  ,BO.Phone	
@@ -16,8 +16,8 @@ SELECT BC.OfferID,
  WHERE ( BO.StatusID = 100 or BO.StatusID = 60) 
 		AND BC.OfferID IN ( SELECT OfferID FROM Offers as O
 							JOIN (SELECT RouteID FROM ARoutes AS R						
-							WHERE CHARINDEX('MA', R.RCountries) > 0) AS C ON C.RouteID = O.RouteID)
-		AND( BP.Nationality = 'UA' /*OR BP.Nationality = 'UA'*/ )-- AND BC.Trace LIKE '%Танжер%'
+							WHERE CHARINDEX('GB', R.RCountries) > 0) AS C ON C.RouteID = O.RouteID)
+		AND( BP.Nationality = 'BY' /*OR BP.Nationality = 'UA'*/ )-- AND BC.Trace LIKE '%Танжер%'
 		
   ORDER BY CRMID
  

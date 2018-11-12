@@ -12,8 +12,8 @@ SELECT
  Left JOIN Companies CO ON CO.CompanyID = BC.CompanyID
  Left JOIN Agencies Ag ON BO.AgencyID = Ag.AgencyID
  JOIN Agents AS A ON Ag.AgentID=A.AgentID
-  Where  BO.AgencyID is not NULL and BO.StatusID >=60 and BO.Created > '2017-01-01'
-
+  Where  BO.AgencyID='9d5a5c27-a6f0-4022-a772-846da5b8f250' and BO.StatusID >=100 and BO.Created > '2018-01-01'
+  --is not NULL
  Group by BO.AgencyID, A.Name, CO.Name, CO.Currency
  Order by BO.AgencyID DESC, Summa DESC
 

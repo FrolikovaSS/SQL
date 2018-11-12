@@ -16,8 +16,8 @@ SELECT CC.CityID
       
   FROM [dbo].[Cities] AS CC
  FULL outer Join Cities AS C On C.CityID != CC.CityID) AS FT
- Where Distance < 4
- Order by Country2
+ Where Name1 = Name2 --Distance < 4
+ Order by Distance --Country2
  
 GO
 

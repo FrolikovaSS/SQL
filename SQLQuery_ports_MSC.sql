@@ -7,6 +7,7 @@ SELECT AO.OfferID
   Left JOIN OPrices AS OP ON OP.OfferID = AO.OfferID
   where apf = 0 and OP.bca <> 0
   GROUP BY AO.OfferID)
+  Order by CompanyID
 GO
 
 ---//---

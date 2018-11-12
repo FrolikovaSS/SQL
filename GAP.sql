@@ -5,11 +5,11 @@ SELECT StatusID
       --,[ManagerID]
 	   ,CONCAT(P.LName, ' ' ,P.FName) AS Manager
       ,A.Name
-  --    ,[StatusID]
+    ,[StatusID]
 --		,A.Phone
      ,AG.Email
   --    ,[Site]
-  --    ,[AWPath]
+     ,[AWPath]
       ,[CRMID]
   --    ,[ID]
       ,[EDate]
@@ -17,10 +17,10 @@ SELECT StatusID
   FROM [dbo].[Agents] as A
   LEFT OUTER JOIN Profiles AS P ON A.ManagerID=P.UserID 
   Left JOIN Agencies AS AG ON AG.AgentID = A.AgentID
-  Where AWPath is not NULL and StatusID <= 60
+  Where AWPath is not NULL and StatusID = 60
 
 
-  Order by CRMID
+  Order by Email
 GO
 
 

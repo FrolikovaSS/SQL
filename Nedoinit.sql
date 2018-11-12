@@ -2,8 +2,8 @@
 -- SELECT * FROM Offers WHERE OfferID NOT IN (SELECT OfferID FROM OPrices)
 
  --Если матрица проиничена несколько раз--
- --SELECT * FROM OPrices  WHERE OfferID= 95392 Order by OPriceID
- --DELETE FROM OPrices WHERE OfferID= 95392 AND OPriceID >= 2476048
+ --SELECT * FROM OPrices  WHERE OfferID= 95161 Order by OPriceID
+ --DELETE FROM OPrices WHERE OfferID= 96394 AND OPriceID >= 2498277
 
  -- SELECT * FROM Routes WHERE CountryID is NULL
  --UPDATE [dbo].RoutePoints SET CityID= 1791 WHERE CityID= 913
@@ -15,7 +15,7 @@
 --EXEC dbo.MergeAll
 
 --Добавление корабля--
---INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (4, '4*', 1, 'Carnival Sunrise', 'сarnival_sunrise', 1999);
+--INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (1, '5*', 2, 'MSC Virtuosa New Ship 2020', ' msc_virtuosa', 2020);
 -- SELECT * FROM Ships
 
 SELECT * From Cities WHERE UName LIKE '% %'
@@ -23,11 +23,11 @@ SELECT * From Cities Order by CityID DESC
 --Update Cities SET UName = 'zaliv_bjuken' Where CityID = 1981
 
 --Перенос офферов--
---UPDATE Offers SET RouteID = 24765 WHERE OfferID IN (73016)
+--UPDATE Offers SET RouteID = 25555 WHERE OfferID IN (72436)
 --UPDATE Offers SET RouteID = 24399 WHERE OfferID >=88830 and OfferID <=88856
 
 --Открыть добавление отзывов у корабля--
---INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 407, 'ship', 'Обсуждение лайнера  Carnival Sunrise', 0);
+--INSERT INTO [Topics] ( [RefID], [Type], [Name], [IsLocked]) VALUES ( 411, 'ship', 'Обсуждение лайнера  MSC Virtuosa', 0);
 
 SELECT [TopicID]
       ,[RefID]
@@ -38,7 +38,7 @@ SELECT [TopicID]
 
   -- DELETE FROM Topics Where TopicID = 423
 
---UPDATE Ships SET TopicID=429 WHERE ShipID IN (405)
+--UPDATE Ships SET TopicID=436 WHERE ShipID IN (411)
 
 --INSERT INTO [Ships] ([CompanyID], [ShipCategoryID], [StatusID], [Name], [UName], [Year]) VALUES (2, '5*', 2, 'Costa Venezia New Ship 2019', 'costa_venezia', 2019);
 
@@ -66,7 +66,7 @@ SELECT BO.BOrderID
 
   --- Авторизация пользователя
 
-  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('eshesternina#mail.ru@cruclub.ru')
+  --UPDATE aspnet_Membership SET IsApproved = 1 WHERE Email IN ('coval.mischa#yandex.ru@cruclub.ru')
 
 
   ---Pullman
@@ -76,11 +76,14 @@ SELECT BO.BOrderID
 --	UPDATE Offers SET IsManual = 1 WHERE Date > '2017-09-25' AND ShipID IN (SELECT ShipID FROM Ships WHERE CompanyID IN (49, 51)) AND OfferID NOT IN (78180)
 
  --md5
-  SELECT (HASHBYTES('MD5', Lower('145623A5-C376-4611-8C0E-EE61572B63A4')));-- UserID
-  Select (LOWER ('A6952DB778B14D782EC48243AA942CB9')) -- подставить результат предыдущей строки
-  --UPDATE Profiles SET PhotoPath = 'User/a6952db778b14d782ec48243aa942cb9.jpg' Where UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
+  SELECT (HASHBYTES('MD5', Lower('EB5D3D8F-9392-4312-8A80-5FF775DE9FA3')));-- UserID
+  Select (LOWER ('634E927ADD46F4D99FDF566C9A2E3CAB')) -- подставить результат предыдущей строки
+  --UPDATE Profiles SET PhotoPath = 'User/634e927add46f4d99fdf566c9a2e3cab.jpg' Where UserID = 'EB5D3D8F-9392-4312-8A80-5FF775DE9FA3'
   -- в Profiles добавить цитату и КК
-  --UPDATE Profiles SET Position = 'MSC Crociere, Costa Cruises, Norwegian Cruise Line, Oceania Cruises' Where UserID = 'DEAB7B82-18EF-4788-844F-BA26646BDDDE'
+  --UPDATE Profiles SET Position = 'MSC Crociere, Costa Cruises, Norwegian Cruise Line' Where UserID = 'EB5D3D8F-9392-4312-8A80-5FF775DE9FA3'
+
+  --UPDATE Profiles SET Quote = 'Круизы - это возможность узнать мир в роскошных условиях!' Where UserID = 'EB5D3D8F-9392-4312-8A80-5FF775DE9FA3'
+   --UPDATE Profiles SET OfficeID = 1  Where UserID = 'EB5D3D8F-9392-4312-8A80-5FF775DE9FA3'
 
 ---Поиск для отзыва
 
@@ -95,9 +98,9 @@ SELECT
   
   FROM [dbo].[aspnet_Membership] as ME
   JOIN aspnet_Users as U ON U.UserId = ME.UserId
-  WHERE ME.Email LIKE '%domustv@gmail.com'
+  WHERE ME.Email LIKE '%mari042008%'
   --Where ME.UserID = 'E3D97DA7-A5F9-4E37-AFF2-2A9D576E4FCE'
-  --UPDATE aspnet_Membership SET Email = 'a.teplova@cruclub.ru' Where UserID = '145623A5-C376-4611-8C0E-EE61572B63A4'
+  --UPDATE aspnet_Membership SET Email = 'o.baeva@cruclub.ru' Where UserID = '76BC4E11-03B5-43EC-B0B8-C72A4738A0C5'
 
   --- Проверка существования оффера
   GO
@@ -105,7 +108,7 @@ SELECT
 	 SELECT       OFR.OfferID  ,OFR.ShipID   ,OFR.Date  , BC.Duration,IsManual 
 	 FROM [dbo].[Offers] AS OFR
 	 LEFT JOIN BCruises as BC ON   OFR.OfferID = BC.OfferID
-	  WHERE  OFR.ShipID = 363 and IsManual= 0  and OFR.Date = '2018-09-20'
+	  WHERE  OFR.ShipID = 401 and IsManual= 0  and OFR.Date = '2019-03-03'
 	 Order by OFR.Date
   GO
 

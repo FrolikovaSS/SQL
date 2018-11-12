@@ -3,18 +3,41 @@ GO
 
 SELECT BO.BOrderID
       ,[CRMID]
-	  ,BC.Category
 	  ,BC.Cabin
+	  ,BC.Category
+	  
 	  ,BC.BookingID
+	  ,B.pax
 	  ,BP.Position
+	  ,BCP.p
+	  ,BCP.ncf
+	  
 	  ,BP.FName
 	  ,BP.LName
-	  ,BP.BDate
+	  ,BI.Name
+	  ,BIP.p
+	  ,BIP.ncf
      
   FROM [dbo].[BOrders] AS BO
-   Left JOIN BPersons AS BP ON BO.BOrderID = BP.BOrderID
+  
    Left JOIN BCruises AS BC ON BC.BOrderID = BO.BOrderID
-   WHERE BO.StatusID = 100 and CRMID IN ('8412', '12117','12077','12092', '12071', '12046', '11945', '11960', '11934', '12679', '12620', '11962')
+   JOIN (
+	SELECT  
+			
+			COUNT(BCP.p) AS pax			
+		,BCP.BCruiseID
+	FROM BCruisePersons BCP
+	
+	JOIN BCruises as BC ON BC.BCruiseID = BCP.BCruiseID
+	GROUP BY BCP.BCruiseID
+	) AS B ON BC.BCruiseID = B.BCruiseID
+    Left JOIN BPersons AS BP ON BO.BOrderID = BP.BOrderID
+   Left JOIN BCruisePersons BCP ON BP.BPersonID = BCP.BPersonID
+  Left JOIN BItemPersons AS BIP ON BIP.BPersonID = BP.BPersonID
+  Left JOIN BItems AS BI ON BIP.BItemID = BI.BItemID
+
+   WHERE BO.StatusID = 100 and CRMID >= '13774' and CRMID <= '13794'
+
    Order by CRMID, BO.BOrderID,  BP.Position
 GO
 
