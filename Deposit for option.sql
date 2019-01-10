@@ -23,6 +23,41 @@ From
   Order by Manager
 GO --/Deposit for option
 
+GO --/System tasks
+Select B.BOrderID,
+B.CRMID,
+B.Num
+	,BT.Name
+	,CONCAT(P.LName, ' ' ,P.FName) AS Manager
+	,BO.Created	
+	,BT.Author
+	,BT.Owner
+From
+(SELECT BO.BOrderID
+	,Count(BTaskID)as Num
+	,BO.CRMID
+
+   
+  FROM [dbo].[BOrders] AS BO
+  Left Join BTasks AS BT ON BO.BOrderID = BT.BOrderID
+  Where BO.StatusID = 100 and BT.NDate is NULL and BT.Author = 'S'
+  Group by BO.BOrderID, BO.CRMID)AS B
+
+  Left Join (SELECT BO.BOrderID
+	,Count(BTaskID)as NumAll
+	,BO.CRMID
+  FROM [dbo].[BOrders] AS BO
+  Left Join BTasks AS BT ON BO.BOrderID = BT.BOrderID
+  Where BO.StatusID = 100
+  Group by BO.BOrderID, BO.CRMID) AS A ON B.BOrderID = A.BorderID
+
+  Left Join BTasks AS BT ON B.BOrderID = BT.BOrderID
+   Left Join BOrders AS BO ON BO.BOrderID = BT.BOrderID
+  Left JOIN Profiles AS P ON BO.ManagerID=P.UserID 
+  Where B.Num = A.NumAll 
+  Order by CRMID, Manager
+GO --/
+
 GO --/Additional services
 
 SELECT BO.BOrderID

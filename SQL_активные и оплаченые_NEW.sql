@@ -6,8 +6,7 @@ SELECT
 	,CONCAT (PR.LName,' ',PR.FName) AS Manager
 	,BO.StatusID
 	,B.Summa As CruiseCost
-	,COALESCE(DSC.Services, 0) + B.Summa as FullCost
-	
+	,COALESCE(DSC.Services, 0) + B.Summa as FullCost	
 	,P.Paid
 	,BT.Name
 	,BT.NDate

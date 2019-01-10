@@ -59,7 +59,7 @@ WHERE BO.StatusID >= 100
 	AND BO.AgencyID IS NOT NULL 
 	AND BO.AgencyID NOT IN ('4d318ee4-d8a2-4806-860c-d21dd8733e56','aa1f5f88-95c6-44d1-ab0b-8d43f666e9b3')
 	--AND BP.Pos = MaxPay
-	AND (P.MaxPay >= '2018-10-01' AND P.MaxPay <= '2018-11-01') 
+	AND (P.MaxPay >= '2018-11-01' AND P.MaxPay <= '2018-12-01') 
 	
 ORDER BY P.MaxPay
 GO
